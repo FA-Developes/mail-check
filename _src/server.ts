@@ -23,18 +23,22 @@ app.use((req, res, next) => {
 app.use(bodyParser.json()).use(bodyParser.urlencoded({ extended: false }));
 
 app.post("/sendmail", async (req, res) => {
-    let mail = await nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: req.body.from,
-          pass: req.body.pw
-        }
-    }).sendMail({
-        to: req.body.to,
-        subject: req.body.suject,
-        html: req.body.content + `<img src="${process.env.SERVER_PATH ||'localhost:8080'}/testimage/${generateId(req.body.to)}.png">`
-    });
-    res.json(mail);
+    try {
+        let mail = await nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: req.body.from,
+              pass: req.body.pw
+            }
+        }).sendMail({
+            to: req.body.to,
+            subject: req.body.suject,
+            html: req.body.content + `<img src="${process.env.SERVER_PATH ||'localhost:8080'}/testimage/${generateId(req.body.to)}.png">`
+        });
+        res.json(mail);
+    } catch (e) {
+        res.status(400).json(e);
+    }
 })
 .get("/testimage/:checkId", checkerImage(__dirname+"/images/test.png"))
 

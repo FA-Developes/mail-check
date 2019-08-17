@@ -54,24 +54,31 @@ app.use(function (req, res, next) {
 });
 app.use(bodyParser.json()).use(bodyParser.urlencoded({ extended: false }));
 app.post("/sendmail", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var mail;
+    var mail, e_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, nodemailer_1.default.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: req.body.from,
-                        pass: req.body.pw
-                    }
-                }).sendMail({
-                    to: req.body.to,
-                    subject: req.body.suject,
-                    html: req.body.content + ("<img src=\"" + (process.env.SERVER_PATH || 'localhost:8080') + "/testimage/" + mail_check_1.generateId(req.body.to) + ".png\">")
-                })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, nodemailer_1.default.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: req.body.from,
+                            pass: req.body.pw
+                        }
+                    }).sendMail({
+                        to: req.body.to,
+                        subject: req.body.suject,
+                        html: req.body.content + ("<img src=\"" + (process.env.SERVER_PATH || 'localhost:8080') + "/testimage/" + mail_check_1.generateId(req.body.to) + ".png\">")
+                    })];
             case 1:
                 mail = _a.sent();
                 res.json(mail);
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                e_1 = _a.sent();
+                res.status(400).json(e_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); })
