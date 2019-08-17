@@ -24,8 +24,10 @@ app.use(bodyParser.json()).use(bodyParser.urlencoded({ extended: false }));
 
 app.post("/sendmail", async (req, res) => {
     try {
-        let mail = await nodemailer.createTransport({
-            service: 'gmail',
+        let mail = await nodemailer.createTransport({ 
+            host: 'mail.eclipso.de',
+            port: 587,
+            secure: false, // true for 465, false for other ports
             auth: {
               user: req.body.from,
               pass: req.body.pw

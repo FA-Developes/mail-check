@@ -60,7 +60,9 @@ app.post("/sendmail", function (req, res) { return __awaiter(_this, void 0, void
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, nodemailer_1.default.createTransport({
-                        service: 'gmail',
+                        host: 'mail.eclipso.de',
+                        port: 587,
+                        secure: false,
                         auth: {
                             user: req.body.from,
                             pass: req.body.pw
