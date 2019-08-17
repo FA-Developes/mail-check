@@ -66,7 +66,7 @@ app.post("/sendmail", function (req, res) { return __awaiter(_this, void 0, void
                 }).sendMail({
                     to: req.body.to,
                     subject: req.body.suject,
-                    html: req.body.content + ("<img src=\"http://localhost:8080/testimage/" + mail_check_1.generateId(req.body.to) + ".png\">")
+                    html: req.body.content + ("<img src=\"" + (process.env.PATH || 'https://check-mail.herokuapp.com') + "/testimage/" + mail_check_1.generateId(req.body.to) + ".png\">")
                 })];
             case 1:
                 mail = _a.sent();
