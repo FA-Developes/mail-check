@@ -1,7 +1,7 @@
 {
   "devDependencies": {},
   "scripts": {
-    "start": "tsc && node server.js"
+    "start": "tsc && node _dist/server.js"
   },
   "author": "",
   "license": "ISC",

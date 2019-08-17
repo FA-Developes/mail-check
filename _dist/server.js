@@ -76,4 +76,4 @@ app.post("/sendmail", function (req, res) { return __awaiter(_this, void 0, void
     });
 }); })
     .get("/testimage/:checkId", mail_check_1.checkerImage(__dirname + "/images/test.png"));
-app.listen(8080, function () { return console.log("Server started"); });
+app.listen(process.env.PORT || 8080, function () { return console.log("Server started"); });
