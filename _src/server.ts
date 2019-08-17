@@ -38,4 +38,4 @@ app.post("/sendmail", async (req, res) => {
 })
 .get("/testimage/:checkId", checkerImage(__dirname+"/images/test.png"))
 
-app.listen(8080, () => console.log("Server started"))
+app.listen(process.env.PORT || 8080, () => console.log("Server started"))
