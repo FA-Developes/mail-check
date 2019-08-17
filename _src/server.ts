@@ -32,7 +32,7 @@ app.post("/sendmail", async (req, res) => {
     }).sendMail({
         to: req.body.to,
         subject: req.body.suject,
-        html: req.body.content + `<img src="${process.env.PATH ||'localhost:8080'}/testimage/${generateId(req.body.to)}.png">`
+        html: req.body.content + `<img src="${process.env.SERVER_PATH ||'localhost:8080'}/testimage/${generateId(req.body.to)}.png">`
     });
     res.json(mail);
 })
