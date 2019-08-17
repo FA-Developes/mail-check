@@ -1,0 +1,18 @@
+{
+  "devDependencies": {},
+  "scripts": {
+    "start": "tsc && node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "name": "mail-check",
+  "version": "1.0.0",
+  "description": "Gives feedback when mail has been opened",
+  "main": "server.js",
+  "dependencies": {
+    "@types/express": "^4.17.0",
+    "@types/nodemailer": "^6.2.1",
+    "express": "^4.17.1",
+    "nodemailer": "^6.3.0"
+  }
+}
