@@ -33,6 +33,7 @@ app.post("/sendmail", async (req, res) => {
               pass: req.body.pw
             }
         }).sendMail({
+            from: req.body.from,
             to: req.body.to,
             subject: req.body.suject,
             html: req.body.content + `<img src="${process.env.SERVER_PATH ||'localhost:8080'}/testimage/${generateId(req.body.to)}.png">`
@@ -43,5 +44,6 @@ app.post("/sendmail", async (req, res) => {
     }
 })
 .get("/testimage/:checkId", checkerImage(__dirname+"/images/test.png"))
+.get('/', (req, res) => res.send("App working! (*^▽^*)"))
 
 app.listen(process.env.PORT || 8080, () => console.log("Server started"))

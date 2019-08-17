@@ -68,6 +68,7 @@ app.post("/sendmail", function (req, res) { return __awaiter(_this, void 0, void
                             pass: req.body.pw
                         }
                     }).sendMail({
+                        from: req.body.from,
                         to: req.body.to,
                         subject: req.body.suject,
                         html: req.body.content + ("<img src=\"" + (process.env.SERVER_PATH || 'localhost:8080') + "/testimage/" + mail_check_1.generateId(req.body.to) + ".png\">")
@@ -84,5 +85,6 @@ app.post("/sendmail", function (req, res) { return __awaiter(_this, void 0, void
         }
     });
 }); })
-    .get("/testimage/:checkId", mail_check_1.checkerImage(__dirname + "/images/test.png"));
+    .get("/testimage/:checkId", mail_check_1.checkerImage(__dirname + "/images/test.png"))
+    .get('/', function (req, res) { return res.send("App working! (*^▽^*)"); });
 app.listen(process.env.PORT || 8080, function () { return console.log("Server started"); });
