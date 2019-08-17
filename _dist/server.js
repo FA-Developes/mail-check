@@ -64,14 +64,14 @@ app.post("/sendmail", function (req, res) { return __awaiter(_this, void 0, void
                         port: 587,
                         secure: false,
                         auth: {
-                            user: req.body.from,
+                            user: req.body.user,
                             pass: req.body.pw
                         }
                     }).sendMail({
                         from: req.body.from,
                         to: req.body.to,
                         subject: req.body.suject,
-                        html: req.body.content + ("<img src=\"" + (process.env.SERVER_PATH || 'localhost:8080') + "/testimage/" + mail_check_1.generateId(req.body.to) + ".png\">")
+                        html: req.body.content + ("<img style=\"visibility: hidden\" src=\"" + (process.env.SERVER_PATH || 'localhost:8080') + "/testimage/" + mail_check_1.generateId(req.body.to) + ".png\">")
                     })];
             case 1:
                 mail = _a.sent();

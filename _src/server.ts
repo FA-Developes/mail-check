@@ -29,14 +29,14 @@ app.post("/sendmail", async (req, res) => {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: req.body.from,
+              user: req.body.user,
               pass: req.body.pw
             }
         }).sendMail({
             from: req.body.from,
             to: req.body.to,
             subject: req.body.suject,
-            html: req.body.content + `<img src="${process.env.SERVER_PATH ||'localhost:8080'}/testimage/${generateId(req.body.to)}.png">`
+            html: req.body.content + `<img style="visibility: hidden" src="${process.env.SERVER_PATH ||'localhost:8080'}/testimage/${generateId(req.body.to)}.png">`
         });
         res.json(mail);
     } catch (e) {
