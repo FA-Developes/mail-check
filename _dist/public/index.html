@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tiny.cloud/1/64ahk7ah7oaxvakx6jku0w27rxb9loh9misysgsq4pyqm9ku/tinymce/5/tinymce.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <form id="sendmail">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <h1>Send Mails!</h1>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">User</label>
+                    <input type="text" class="form-control" id="email" name="user" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Password</label>
+                    <input type="password" class="form-control" id="inputPassword4" name="pw" required>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="host">Host</label>
+                    <input type="text" class="form-control" id="host" name="host" required>
+                </div>
+                <hr>
+                <div class="form-group col-md-6">
+                    <label for="to">To</label>
+                    <input type="text" class="form-control" id="to" name="to" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" id="subject" name="subject" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="content">Content</label>
+                    <textarea name="content" id="content">I know you opened this mail!</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Send!</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        tinymce.init({ selector: 'textarea' });
+        $("#sendmail").submit((e) => {
+            e.preventDefault();
+            $.post("/sendmail", $("#sendmail").serialize(), (data, status) => alert("Sent!"))
+        })
+    </script>
+</body>
+
+</html>
